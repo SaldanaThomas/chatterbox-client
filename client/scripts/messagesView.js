@@ -6,21 +6,29 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
-    // TODO: Perform any work which needs to be done
-    // when this view loads.
+    MessagesView.$chats.click(function() {
+      MessagesView.handleClick();
+    });
   },
 
   render: function() {
-    // TODO: Render _all_ the messages.
+    let messages = Messages.retrieveMessages();
+    for (let message of messages) {
+      MessagesView.renderMessage(message);
+    }
   },
 
   renderMessage: function(message) {
-    // TODO: Render a single message.
+    //need to fix MessagesView.render for line 23 to work
+    // let $message = MessagesView.render(message);
+    let $message = '<div>' + message + '</div>';
+    MessagesView.$chats.prepend($message);
   },
 
   handleClick: function(event) {
-    // TODO: handle a user clicking on a message
-    // (this should add the sender to the user's friend list).
+    //add friend
+    // let user = event.currentTarget.innnerText;
+    // Friends.toggleFriend(user);
   }
 
 };

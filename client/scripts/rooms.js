@@ -3,11 +3,23 @@
 // with and manipulate the data.
 
 var Rooms = {
+  _data: {General: []},
 
-  // TODO: Define how you want to store the list of rooms
-  _data: null,
+  addMessageToRoom: function(message) {
+    Rooms._data[message.roomname] = Rooms._data[message.roomname] || [];
+    Rooms._data[message.roomname].push(message);
+  },
 
-  // TODO: Define methods which allow you to add rooms, update the list,
-  // mark a room as selected, etc.
+  addRoom: function(room) {
+    //still creating duplicate rooms
+    Rooms._data[room] = Rooms._data[room] || room;
+  },
 
+  retrieveRoomData: function(room) {
+    return Rooms._data[room];
+  },
+
+  retrieveRoomNames: function() {
+    return Object.keys(Rooms._data);
+  }
 };

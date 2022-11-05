@@ -6,7 +6,7 @@ var App = {
 
   $spinner: $('.spinner img'),
 
-  username: 'anonymous',
+  username: 'Not Thomas',
 
   initialize: function() {
     App.username = window.location.search.substr(10);
@@ -23,13 +23,10 @@ var App = {
     // continually, instead of just once at the start.
   },
 
-  fetch: function(callback = ()=>{}) {
+  fetch: function(callback = () => {}) {
     Parse.readAll((data) => {
-      // examine the response from the server request:
-      console.log(data);
-
-      // TODO: Use the data to update Messages and Rooms
-      // and re-render the corresponding views.
+      Messages.addFilteredMessages(data);
+      // App.stopSpinner();
     });
   },
 

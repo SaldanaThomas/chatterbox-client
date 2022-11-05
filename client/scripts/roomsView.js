@@ -7,24 +7,31 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    // TODO: Perform any work which needs to be done
-    // when this view loads.
+    RoomsView.$button.click(function() {
+      RoomsView.handleClick();
+    });
   },
 
   render: function() {
-    // TODO: Render out the list of rooms.
+    let rooms = Rooms.retrieveRoomNames();
+    for (let room of rooms) {
+      RoomsView.renderRoom(room);
+    }
   },
 
-  renderRoom: function(roomname) {
-    // TODO: Render out a single room.
+  renderRoom: function(room) {
+    RoomsView.$select.append('<option>' + room + '</option>');
   },
 
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
   },
 
-  handleClick: function(event) {
-    // TODO: Handle the user clicking the "Add Room" button.
+  handleClick: function() {
+    //check user input for attacks???
+    let room = prompt('Enter room name: ');
+    Rooms.addRoom(room);
+    RoomsView.renderRoom(room);
   }
 
 };
