@@ -4,15 +4,15 @@
 
 var Rooms = {
   _data: {General: []},
+  selectedRoom: 'General',
 
   addMessageToRoom: function(message) {
     Rooms._data[message.roomname] = Rooms._data[message.roomname] || [];
     Rooms._data[message.roomname].push(message);
   },
 
-  addRoom: function(room) {
-    //still creating duplicate rooms
-    Rooms._data[room] = Rooms._data[room] || room;
+  add: function(room) {
+    Rooms._data[room] = [];
   },
 
   retrieveRoomData: function(room) {
@@ -21,5 +21,9 @@ var Rooms = {
 
   retrieveRoomNames: function() {
     return Object.keys(Rooms._data);
+  },
+
+  changeRoom: function(room) {
+
   }
 };

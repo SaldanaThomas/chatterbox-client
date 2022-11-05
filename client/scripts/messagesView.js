@@ -5,30 +5,28 @@ var MessagesView = {
 
   $chats: $('#chats'),
 
-  initialize: function() {
-    MessagesView.$chats.click(function() {
-      MessagesView.handleClick();
-    });
+  initialize: function () {
   },
 
-  render: function() {
+  render: function () {
     let messages = Messages.retrieveMessages();
-    for (let message of messages) {
-      MessagesView.renderMessage(message);
+    for (let message in messages) {
+      MessagesView.renderMessage(messages[message]);
     }
   },
 
-  renderMessage: function(message) {
-    //need to fix MessagesView.render for line 23 to work
-    // let $message = MessagesView.render(message);
-    let $message = '<div>' + message + '</div>';
+  renderMessage: function (message) {
+    let $message = $(MessageView.render(message));
+
+    $message.click(function() {
+      let user = message.username;
+      MessagesView.handleClick(user);
+    });
     MessagesView.$chats.prepend($message);
   },
 
-  handleClick: function(event) {
-    //add friend
-    // let user = event.currentTarget.innnerText;
-    // Friends.toggleFriend(user);
+  handleClick: function (user) {
+    Friends.toggleStatus(user);
   }
 
 };

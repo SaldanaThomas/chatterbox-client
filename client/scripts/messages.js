@@ -2,19 +2,20 @@
 // Treat it like a data structure - add methods to interact
 // with and manipulate the data.
 var Messages = {
-  _data: [],
+  _data: {},
 
   addFilteredMessages: function(messages) {
+    console.log(messages);
     for (var i = 0; i < messages.length; i++) {
       messages[i].roomname = messages[i].roomname || 'General';
       if (!messages[i].username || !messages[i].text) {
         continue;
       }
-      Messages._data.push(messages[i]);
+      if (!Messages._data[messages[i].message_id]) {
+        Messages._data[messages[i].message_id] = messages[i];
+      }
       Rooms.addMessageToRoom(messages[i]);
     }
-    console.log(Messages.retrieveMessages());
-    console.log(Rooms.retrieveRoomNames());
     MessagesView.render();
     RoomsView.render();
   },
@@ -22,9 +23,4 @@ var Messages = {
   retrieveMessages: function(message) {
     return Messages._data;
   },
-
-  interactWithMessage: function(message) {
-    //add friends by clicking message username
-    //add clicl event???
-  }
 };

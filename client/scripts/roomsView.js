@@ -20,18 +20,23 @@ var RoomsView = {
   },
 
   renderRoom: function(room) {
+    //$room =
     RoomsView.$select.append('<option>' + room + '</option>');
   },
 
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
+    //clear msg feed
+
+    //rerender room obly
   },
 
   handleClick: function() {
     //check user input for attacks???
     let room = prompt('Enter room name: ');
-    Rooms.addRoom(room);
-    RoomsView.renderRoom(room);
+    if (!Rooms._data[room]) {
+      Rooms.add(room);
+      RoomsView.renderRoom(room);
+    }
   }
-
 };
