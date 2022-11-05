@@ -10,6 +10,7 @@ var MessagesView = {
 
   render: function () {
     let messages = Messages.retrieveMessages();
+    MessagesView.$chats.html('');
     for (let message in messages) {
       MessagesView.renderMessage(messages[message]);
     }

@@ -14,6 +14,7 @@ var RoomsView = {
 
   render: function() {
     let rooms = Rooms.retrieveRoomNames();
+    RoomsView.$select.html('');
     for (let room of rooms) {
       RoomsView.renderRoom(room);
     }
